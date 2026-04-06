@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en"><head><base href="file:///Users/benjaminyu/Downloads/Nuoli_website/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuoli</title>
+  <style>
+    :root {
+      --bg: #f5f5f2;
+      --panel: #ffffff;
+      --soft: #fcfcfb;
+      --text: #111111;
+      --muted: #666666;
+      --line: #dddddd;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(245, 245, 242, 0.88);
+      border-bottom: 1px solid rgba(221,221,221,0.8);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 56px 0 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px 0;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 96px);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      max-width: 980px;
+    }
+
+    .hero p {
+      margin: 18px 0 0 0;
+      max-width: 900px;
+      font-size: clamp(18px, 2vw, 28px);
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .hero-media {
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      background: #e9e9e4;
+    }
+
+    .who {
+      padding: 28px 0 56px;
+    }
+
+    .section-label {
+      margin: 0 0 18px 0;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .audience-card,
+    .feature-copy,
+    .feature-media {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+    }
+
+    .audience-card {
+      padding: 22px;
+      background: var(--soft);
+      min-height: 220px;
+    }
+
+    .audience-card h3 {
+      margin: 0 0 14px 0;
+      font-size: 21px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .audience-card p {
+      margin: 0 0 10px 0;
+      font-size: 17px;
+      line-height: 1.28;
+      color: var(--text);
+    }
+
+    .audience-card .muted {
+      color: var(--muted);
+    }
+
+    .rows {
+      padding: 16px 0 80px;
+      display: grid;
+      gap: 22px;
+    }
+
+	/* ADD THIS BELOW */
+	.rows .feature-row + .feature-row {
+	  margin-top: 22px;
+}
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1.02fr 1.18fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .feature-row.reverse {
+      grid-template-columns: 1.18fr 1.02fr;
+    }
+
+    .feature-copy {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .feature-copy h2 {
+      margin: 0 0 12px 0;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .feature-copy p {
+      margin: 0 0 14px 0;
+      font-size: 19px;
+      line-height: 1.32;
+      max-width: 52ch;
+    }
+
+    .kicker {
+      margin-bottom: 14px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .feature-media {
+      overflow: hidden;
+      min-height: 380px;
+      background: #ecece6;
+    }
+
+    .feature-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+      background: #e4e4dd;
+    }
+
+    .cta {
+      padding: 0 0 90px;
+    }
+
+    .cta-box {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      background: var(--panel);
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cta-box h2 {
+      margin: 0 0 12px 0;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+    }
+
+    .cta-box p {
+      margin: 0;
+      max-width: 760px;
+      font-size: 18px;
+      line-height: 1.32;
+      color: var(--muted);
+    }
+
+    .cta-link {
+      white-space: nowrap;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: var(--soft);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .audience-grid,
+      .feature-row,
+      .feature-row.reverse,
+      .cta-box {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .hero-media img {
+        height: 380px;
+      }
+
+      .feature-media,
+      .feature-media img {
+        min-height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="container nav-inner">
+        <div class="brand" data-editor-id="ed-0">Nuoli</div>
+        <div class="nav-links" data-editor-id="ed-1">
+          <a href="#who" data-editor-id="ed-2">Who We Serve</a>
+          <a href="#how" data-editor-id="ed-3">How It Works</a>
+          <a href="#providers" data-editor-id="ed-4">Providers</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow" data-editor-id="ed-5">Manufacturing for AI</p>
+        <h1 data-editor-id="ed-6">Smart layer connecting agentic AI to manufacturing</h1>
+        <p data-editor-id="ed-7">
+          Nuoli turns agent-generated work into physical builds, validation, and production routing.
+        </p>
+
+        <div class="hero-media">
+          <img src="images/hero-cnc.jpg" alt="Hero placeholder showing AI-generated manufacturing demand">
+        </div>
+      </div>
+    </header>
+
+    <section class="who" id="who">
+      <div class="container">
+        <p class="section-label" data-editor-id="ed-8">Who We Serve</p>
+        <div class="audience-grid">
+          <article class="audience-card">
+            <h3 data-editor-id="ed-9">Builders - Speed without Friction</h3>
+            <p data-editor-id="ed-10">Design cycles have collapsed from months to minutes, but validation and testing still lag behind—creating a gap between what can be imagined and what can be built.</p>
+            <p class="muted" data-editor-id="ed-11"></p>
+            <p data-editor-id="ed-11">Nuoli → close the gap between rapid design and full-loop execution</p>
+          </article>
+
+          <article class="audience-card">
+            <h3 data-editor-id="ed-12">AI - From Prompt to Product</h3>
+            <p data-editor-id="ed-13">Millions of new builders—startups, engineers, and internal teams—can generate designs instantly. The bottleneck is no longer creativity, but validation, feasibility, and execution.</p>
+            <p class="muted" data-editor-id="ed-15"></p>
+            <p data-editor-id="ed-14">Nuoli → provides validation and physical testing layer</p>
+          </article>
+
+          <article class="audience-card">
+            <h3 data-editor-id="ed-15">Providers - A New Type of Client</h3>
+            <p data-editor-id="ed-16">AI drives new CNC demand. Individuals and teams are building faster than ever. Keep up with this new demand with an AI-native marketplace.</p>
+            <p class="muted" data-editor-id="ed-19"></p>
+            <p data-editor-id="ed-17">Nuoli → get discovered and win qualified jobs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="rows" id="how">
+      <div class="container">
+        <div class="feature-row">
+          <div class="feature-copy">
+            <div class="kicker" data-editor-id="ed-18">Agent-native demand</div>
+            <h2 data-editor-id="ed-19">Agents generate work faster than ever.</h2>
+            <p data-editor-id="ed-20">AI-native builders are rapidly producing designs, iterations. Nuoli helps meet this new demand for manufacturable, reliable, and validated production pipelines.</p>
+            <div class="mini-list">
+              <div data-editor-id="ed-21">Prompts → create raw designs</div>
+              <div data-editor-id="ed-22">Raw design → validated part</div>
+              <div data-editor-id="ed-23">Validated parts→ real-world orders and ***</div>
+            </div>
+          </div>
+          <div class="feature-media">
+            <img src="images/row-01-placeholder.jpg" alt="Placeholder for agent demand image">
+          </div>
+        </div>
+
+        <div class="feature-row reverse">
+          <div class="feature-media">
+            <img src="images/row-02-placeholder.jpg" alt="Placeholder for validation and routing image">
+          </div>
+          <div class="feature-copy">
+            <div class="kicker" data-editor-id="ed-24">real-time validation and workorders</div>
+            <h2 data-editor-id="ed-25">When your prompting is done</h2>
+            <p data-editor-id="ed-26">Nuoli enables users and agents to complete real-world work—handling validation, RFQs, and provider coordination while tracking budgets, workorders, and delivery progress.</p>
+            <div class="mini-list">
+              <div data-editor-id="ed-27">Design files → validated + ready</div>
+              <div data-editor-id="ed-28">RFQs → created + sent</div>
+              <div data-editor-id="ed-29">Budgets → tracked across jobs</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-row" id="providers">
+          <div class="feature-copy">
+            <div class="kicker" data-editor-id="ed-30">AI-REady Provider workflow</div>
+            <h2 data-editor-id="ed-31">Getting ready for AI-driven demand</h2>
+            <p data-editor-id="ed-32">This new market requires providers to be discoverable, responsive, and reliable. Nuoli helps routes AI-generated work, enables fast reliable quotes, and helps execution.</p>
+            <div class="mini-list">
+              <div data-editor-id="ed-33">More visibility to qualified work</div>
+              <div data-editor-id="ed-34">Faster response to CNC demand</div>
+              <div data-editor-id="ed-35">Continuous pipeline instead of one-off leads</div>
+            </div>
+          </div>
+          <div class="feature-media">
+            <img src="images/row-03-placeholder.jpg" alt="Placeholder for provider network image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2 data-editor-id="ed-36">Build the physical layer for agentic work.</h2>
+            <p data-editor-id="ed-37">
+              From prototyping to production routing, Nuoli connects AI-generated work to real manufacturing outcomes.
+            </p>
+          </div>
+          <a class="cta-link" href="mailto:hello@nuoli.com" data-editor-id="ed-38">Contact</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</body></html>
