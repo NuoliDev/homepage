@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Nuoli</title>
+  <style>
+    :root {
+      --bg: #f5f5f2;
+      --panel: #ffffff;
+      --soft: #fcfcfb;
+      --text: #111111;
+      --muted: #666666;
+      --line: #dddddd;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .page { width: 100%; }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(245, 245, 242, 0.88);
+      border-bottom: 1px solid rgba(221,221,221,0.8);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 72px 0 52px;
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 14px 0;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 88px);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      max-width: 980px;
+    }
+
+    .hero p {
+      margin: 18px 0 0 0;
+      max-width: 820px;
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: 1.3;
+    }
+
+    .contact-section,
+    .team-section,
+    .partners-section {
+      padding: 28px 0 56px;
+    }
+
+    .contact-card,
+    .team-card,
+    .partner-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+    }
+
+    .contact-card {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .contact-lower {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-lower .contact-lower-label {
+      margin: 0 0 8px 0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-lower p {
+      margin: 0;
+      max-width: 48ch;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .contact-card h2,
+    .partners-section h2 {
+      margin: 0 0 12px 0;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 12px;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .contact-details .muted,
+    .team-card .role,
+    .bio-placeholder,
+    .partner-copy {
+      color: var(--muted);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .team-card {
+      overflow: hidden;
+      background: var(--soft);
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      background: #e6e6df;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .team-copy {
+      padding: 22px;
+    }
+
+    .team-copy h3 {
+      margin: 0 0 6px 0;
+      font-size: 22px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .role {
+      margin: 0 0 16px 0;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .bio-placeholder {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .training-copy {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .training-copy .training-label {
+      margin: 0 0 8px 0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .training-copy p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .partner-card {
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .partner-card img {
+      width: min(320px, 42%);
+      max-height: 120px;
+      object-fit: contain;
+      background: transparent;
+    }
+
+    .partner-copy {
+      margin: 0;
+      max-width: 620px;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px 32px;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .contact-card,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .partner-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .partner-card img {
+        width: min(320px, 100%);
+      }
+
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html"><span data-editor-id="ed-0">Nuoli</span></a>
+        <div class="nav-links">
+          <a href="#contact"><span data-editor-id="ed-1">Contact</span></a>
+          <a href="#team"><span data-editor-id="ed-2">Team</span></a>
+          <a href="#partners"><span data-editor-id="ed-3">Partners</span></a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow"><span data-editor-id="ed-4">Contact Nuoli</span></p>
+        <h1><span data-editor-id="ed-5">Connecting AI to the physical economy</span></h1>
+        <p><span data-editor-id="ed-6">We work with investors, partners, providers, and builders interested in connecting AI to real-world capabilities and transactions.</span></p>
+      </div>
+    </header>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <p class="section-label"><span data-editor-id="ed-7">Our Contact Information</span></p>
+        <div class="contact-card">
+          <div class="contact-left">
+            <div>
+              <h2><span data-editor-id="ed-8">Let’s talk.</span></h2>
+              <p class="partner-copy"><span data-editor-id="ed-9">We are excited about growing new opportunities for individual creators and businesses in the US to thrive and grow in this new frontier.</span></p>
+            </div>
+
+            <div class="contact-lower">
+              <p class="contact-lower-label"><span data-editor-id="ed-35">what next</span></p>
+              <p><span data-editor-id="ed-36">Have questions? Reach out directly.&nbsp;</span></p>
+            </div>
+          </div>
+          <div class="contact-details">
+            <div><strong><span data-editor-id="ed-10">Email</span></strong><br><a href="mailto:contact@nuoli.net"><span data-editor-id="ed-11">contact@nuoli.net</span></a></div>
+            <div><strong><span data-editor-id="ed-12">Location</span></strong><br><span class="muted"><span data-editor-id="ed-13">Vancouver, Washington</span></span></div>
+            <div><strong><span data-editor-id="ed-14">Incubator</span></strong><br><span class="muted"><span data-editor-id="ed-15">Oregon Bioscience Incubator</span></span></div>
+            <div><strong><span data-editor-id="ed-16">Web</span></strong><br><a href="https://www.nuoli.net"><span data-editor-id="ed-17">www.nuoli.net</span></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section" id="team">
+      <div class="container">
+        <p class="section-label"><span data-editor-id="ed-18">The Team</span></p>
+        <div class="team-grid">
+          <article class="team-card">
+            <img src="images/benjamin-yu.jpg" alt="Benjamin Yu, MD PhD">
+            <div class="team-copy">
+              <h3><span data-editor-id="ed-19">Benjamin Yu, MD PhD</span></h3>
+              <p class="role"><span data-editor-id="ed-20">Head of Platform</span></p>
+              <p class="bio-placeholder"><span data-editor-id="ed-21">Benjamin Yu, MD, PhD is a physician-scientist, technology executive, and entrepreneur who has helped build durable businesses from idea stage to multimillion-dollar scale. At companies including Interpreta and Humetrix, he worked alongside founders, engineers, clinicians, and operators on data-intensive products spanning population-scale machine learning, generative AI, mobile platforms, data architecture, algorithms, customer deployment, and company operations.</span></p>
+              <div class="training-copy">
+                <p class="training-label"><span data-editor-id="ed-32">Background</span></p>
+                <p><span data-editor-id="ed-21b">Ben obtained his M.D., Ph.D. from Washington University in St. Louis. In his academic career, he developed cutting-edge research programs from the ground up at UC San Diego, secured funding from the Gates Foundation, NIH, CIRM, and others, helped build exceptional multidisciplinary teams, and led stem research programs from inception through execution.</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="images/will-hail.jpg" alt="Will Hail">
+            <div class="team-copy">
+              <h3><span data-editor-id="ed-22">Will Hail</span></h3>
+              <p class="role"><span data-editor-id="ed-23">Head of Software</span></p>
+              <p class="bio-placeholder"><span data-editor-id="ed-24">William Hail is a biomedical engineer and software developer who has worked with Nuoli to build the backend infrastructure, MCP suite, and tools supporting manufacturing, engineering design, and bioinformatics applications. His technical work spans CUDA and GPU-accelerated computing, 3D model mapping and simulation, backend systems, and computational workflows designed to support AI-driven products.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+              <div class="training-copy">
+                <p class="training-label"><span data-editor-id="ed-33">Background</span></p>
+                <p><span data-editor-id="ed-24b">Will is a graduate of the University of Miami. He also has experience in engineering, medical devices, and neurotechnology, including brain implants, neural interfaces and neuromodulation at the University of Miami and University of Minnesota.</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="images/xiaoxuan-dang.jpg" alt="Xiaoxuan Dang">
+            <div class="team-copy">
+              <h3><span data-editor-id="ed-25">Xiaoxuan Dang</span></h3>
+              <p class="role"><span data-editor-id="ed-26">Head of Data</span></p>
+              <p class="bio-placeholder"><span data-editor-id="ed-27">Xiaoxuan Dang is a data engineer with a background spanning biomedical research, bioengineering, and computer science. She is building the data foundation and infrastructure that supports the company’s AI-driven products. Prior to Nuoli, she worked at Amazon as a Data Engineering Intern in cloud-based data systems and data engineering technologies. Her technical interests include data engineering, machine learning, generative AI, and building reliable data systems that can turn complex information into useful products.&nbsp;&nbsp;</span></p>
+              <div class="training-copy">
+                <p class="training-label"><span data-editor-id="ed-34">Background</span></p>
+                <p><span data-editor-id="ed-27b">Xiaoxuan also has had experience in conducting cancer research at the University of Michigan and holds a Master’s degree in Bioengineering and a Master of Computer and Information Technology from the University of Pennsylvania.</span></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners-section" id="partners">
+      <div class="container">
+        <p class="section-label"><span data-editor-id="ed-28">Our Partners</span></p>
+        <div class="partner-card">
+          <div>
+            <h2><span data-editor-id="ed-29">Oregon Bioscience Incubator</span></h2>
+            <p class="partner-copy"><span data-editor-id="ed-30">Nuoli is building from the Oregon Bioscience Incubator and is part of the region’s growing technology and bioscience ecosystem.</span></p>
+          </div>
+          <img src="images/oregon-bioscience-incubator-logo.png" alt="Oregon Bioscience Incubator logo">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer><span data-editor-id="ed-31">© 2026 Nuoli Health Inc. All Rights Reserved.</span></footer>
+
+
+</body></html>
